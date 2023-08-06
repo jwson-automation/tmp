@@ -4,53 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".SignUpActivity">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
-
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo"/>
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
         <EditText
             android:id="@+id/editTextUsername"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username" />
 
         <EditText
             android:id="@+id/editTextPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/LoginBtn"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonSignup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login" />
-
-
-
-        <Button
-            android:id="@+id/SignUpBtn"
-            android:layout_width="100sp"
-            android:layout_height="50sp"
-            android:text="Sign UP"/>
-
-        <Button
-            android:id="@+id/GoogleLoginBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="G"/>
+            android:text="Signup" />
 
     </LinearLayout>
 
