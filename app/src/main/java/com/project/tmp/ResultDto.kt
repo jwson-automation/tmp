@@ -3,19 +3,19 @@ package com.project.tmp
 import java.io.Serializable
 
 class ResultDto : Serializable {
-    var _id: Int
-    var title: String
-    var content: String
-    var date: String
+    var nickname: String
+    var description: String
+    var latitude: Int
+    var longitude: Int
 
-    constructor(_id: Int, title: String, content: String, date: String) {
-        this._id = _id
-        this.title = title
-        this.content = content
-        this.date = date
+    constructor(nickname: String, description: String, latitude: Int, longitude: Int) {
+        this.nickname = nickname
+        this.description = description
+        this.latitude = latitude
+        this.longitude = longitude
     }
 
     override fun toString(): String {
-        return "MemoDto(_id='$_id', title='$title', content='$content', date='$date')"
+        return "ResultDto(nickname='$nickname', description='$description', latitude='$latitude', longitude='$longitude')"
     }
 }
