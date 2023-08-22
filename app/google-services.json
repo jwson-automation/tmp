@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "852428757554",
+    "firebase_url": "https://gamechin-4517d-default-rtdb.firebaseio.com",
+    "project_id": "gamechin-4517d",
+    "storage_bucket": "gamechin-4517d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852428757554:android:c6a57c37c9a1b87bf43a2b",
+        "android_client_info": {
+          "package_name": "com.project.tmp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852428757554-42v2ro6fm9a11q5ccfhv22tocp3kqvtv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.tmp",
+            "certificate_hash": "bd8df36f09be7dc4f25be4b80c7e390eb7a2dd2e"
+          }
+        },
+        {
+          "client_id": "852428757554-i9vlegc6d3vjrrrv43t83t3do1s6q74e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxmdnaYbYp1Y2DoodNadrmDZ0pZlPuZf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852428757554-i9vlegc6d3vjrrrv43t83t3do1s6q74e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,4 +10,7 @@ object Setting {
 
     val LOCATION_PERMISSION_REQUEST_CODE = 123
 
+    var latitude = 0.0
+    var longitude = 0.0
+
 }
