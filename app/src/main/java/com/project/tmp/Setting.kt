@@ -5,7 +5,7 @@ import java.util.*
 
 object Setting {
     val gameTypes =
-        arrayOf("Game Type 1", "Game Type 2", "Game Type 3")
+        arrayOf("오버워치", "리그오브레전드", "마인크래프트")
     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     val LOCATION_PERMISSION_REQUEST_CODE = 123

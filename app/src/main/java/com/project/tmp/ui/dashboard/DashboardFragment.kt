@@ -3,6 +3,7 @@ package com.project.tmp.ui.dashboard
 import android.R
 import android.os.Bundle
 import android.util.Log
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,8 @@ import com.project.tmp.ResultAdapter
 import com.project.tmp.ResultDto
 import com.project.tmp.Setting
 import com.project.tmp.Setting.dateFormat
+import com.project.tmp.Setting.latitude
+import com.project.tmp.Setting.longitude
 import com.project.tmp.databinding.FragmentDashboardBinding
 
 private const val TAG = "DashboardFragment"
@@ -45,6 +48,22 @@ class DashboardFragment : Fragment() {
         initSpinner()
     }
 
+    private fun calculateDistance(_latitude: Double, _longitude: Double): Double {
+        // 현재 위치와 지정된 위치 간의 거리 계산
+        val currentLatitude = latitude // 현재 위치의 위도
+        val currentLongitude = longitude // 현재 위치의 경도
+
+        val resultArray = FloatArray(1)
+        Location.distanceBetween(
+            currentLatitude, currentLongitude,
+            _latitude, _longitude,
+            resultArray
+        )
+
+        // 거리 값 반환 (미터 단위)
+        return resultArray[0].toDouble()
+    }
+
     private fun getResult(selectedGameType: String) {
         val database = FirebaseDatabase.getInstance()
         val userRef = database.getReference("users") // Replace with your database path
@@ -65,20 +84,15 @@ class DashboardFragment : Fragment() {
                         val latitude = snapshot.child("latitude").getValue(Int::class.java) ?: 0
                         val longitude = snapshot.child("longitude").getValue(Int::class.java) ?: 0
                         val dateFormatted = snapshot.child("date").getValue(String::class.java) ?: ""
-
                         val gameType = snapshot.child("snapshot").getValue(String::class.java) ?: ""
-
                         val date = dateFormat.parse(dateFormatted)
+                        val distance = calculateDistance( latitude.toDouble(), longitude.toDouble())
 
-                        val resultDto = ResultDto(nickname, description, latitude, longitude, date, gameType)
+                        val resultDto = ResultDto(nickname, description, latitude, longitude, date, gameType, distance)
                         resultDtoList.add(resultDto)
                     }
 
-                    resultDtoList.sortByDescending { it.date }
-
-                    // Now you have the list of ResultDto objects
-                    // You can do something with the resultDtoList here
-                    // For example, pass it to your RecyclerView adapter
+                    resultDtoList.sortBy{ it.distance }
 
                     Log.d(TAG, "onDataChange: $resultDtoList")
 

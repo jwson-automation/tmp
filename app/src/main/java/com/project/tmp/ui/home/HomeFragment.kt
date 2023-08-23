@@ -17,6 +17,7 @@ import com.project.tmp.Setting.gameTypes
 import com.project.tmp.databinding.FragmentHomeBinding
 import android.Manifest
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.project.tmp.Setting.latitude
 import com.project.tmp.Setting.longitude
@@ -58,11 +59,14 @@ class HomeFragment : Fragment() {
         gameTypeSpinner.adapter = gameTypeAdapter
 
         binding.StartBtn.setOnClickListener {
-            onButtonClicked(gameTypeSpinner.selectedItem as String)
+            onSendButtonClicked(gameTypeSpinner.selectedItem as String)
+        }
+        binding.changeLocationBtn.setOnClickListener {
+            onLocationUpdateButtonClicked()
+
         }
     }
-
-    private fun onButtonClicked(selectedGameType: String) {
+    private fun onLocationUpdateButtonClicked() {
 
         // 위치서비스
         if (ActivityCompat.checkSelfPermission(
@@ -85,6 +89,9 @@ class HomeFragment : Fragment() {
                     latitude = location.latitude
                     longitude = location.longitude
 
+                    val coordinatesText = "현재 좌표: $latitude, $longitude"
+                    binding.textViewCoordinates.text = coordinatesText
+
                     // 위의 코드와 동일하게 진행
                 } ?: run {
                     Toast.makeText(
@@ -94,6 +101,10 @@ class HomeFragment : Fragment() {
                     ).show()
                 }
             }
+
+    }
+
+    private fun onSendButtonClicked(selectedGameType: String) {
 
 
         // Get the user's nickname and description from your UI
@@ -143,7 +154,7 @@ class HomeFragment : Fragment() {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // 권한이 허용된 경우 버튼 클릭 로직 다시 수행
-                onButtonClicked(binding.spinnerGameType.selectedItem as String)
+                onSendButtonClicked(binding.spinnerGameType.selectedItem as String)
             } else {
                 Toast.makeText(
                     requireContext(),

@@ -11,6 +11,7 @@ class ResultAdapter(val resultList: List<ResultDto>) :
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nickname: TextView = itemView.findViewById(R.id.nickname)
         val desc: TextView = itemView.findViewById(R.id.description)
+        val distance : TextView = itemView.findViewById(R.id.distance)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,6 +24,7 @@ class ResultAdapter(val resultList: List<ResultDto>) :
         val result = resultList[position]
         holder.nickname.text = result.nickname
         holder.desc.text = result.description
+        holder.distance.text = "Distance : ${result.distance.toString()}km "
     }
 
     override fun getItemCount(): Int {

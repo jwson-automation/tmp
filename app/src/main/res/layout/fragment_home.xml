@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Root layout using a CardView -->
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,15 +8,44 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:orientation="vertical"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_margin="4dp"
+        android:orientation="vertical"
+        android:background="@drawable/border_background"
+        >
+    <!-- TextView to display current coordinates -->
+    <TextView
+        android:id="@+id/textViewCoordinates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="현재 좌표: 좌표를 입력해주세요."
+        android:textSize="16sp" />
+
+    <!-- Button to change current location -->
+    <Button
+        android:id="@+id/changeLocationBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="위치 변경" />
+
+    </LinearLayout>
 
     <!-- Vertical LinearLayout to hold card content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_margin="4dp"
+        android:background="@drawable/border_background">
 
         <Spinner
             android:id="@+id/spinnerGameType"
@@ -50,4 +79,4 @@
 
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</LinearLayout>
