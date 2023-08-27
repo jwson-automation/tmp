@@ -19,6 +19,9 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.project.tmp.Setting.latitude
 import com.project.tmp.Setting.longitude
 
@@ -48,6 +51,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initSpinner()
+        var locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                // 위치 업데이트 처리
+                val lastLocation = locationResult.lastLocation
+                // 여기서 위치 정보를 처리하고 UI를 업데이트할 수 있습니다.
+            }
+        }
     }
 
     private fun initSpinner() {
@@ -66,8 +76,9 @@ class HomeFragment : Fragment() {
 
         }
     }
-    private fun onLocationUpdateButtonClicked() {
 
+
+    private fun onLocationUpdateButtonClicked() {
         // 위치서비스
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -89,8 +100,10 @@ class HomeFragment : Fragment() {
                     latitude = location.latitude
                     longitude = location.longitude
 
-                    val coordinatesText = "현재 좌표: $latitude, $longitude"
+                    var coordinatesText = "현재 좌표: $latitude, $longitude"
                     binding.textViewCoordinates.text = coordinatesText
+
+                    Log.d(TAG, "onLocationUpdateButtonClicked: $latitude")
 
                     // 위의 코드와 동일하게 진행
                 } ?: run {
@@ -101,11 +114,9 @@ class HomeFragment : Fragment() {
                     ).show()
                 }
             }
-
     }
 
     private fun onSendButtonClicked(selectedGameType: String) {
-
 
         // Get the user's nickname and description from your UI
         val nickname = binding.editTextNickname.text.toString()
@@ -168,5 +179,34 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    // 임시로 만들어 둔 지역 매퍼!
+    private fun getRegionFromCoordinates(latitude: Double, longitude: Double): String {
+        if (latitude in 33.0..38.5 && longitude in 124.0 .. 131.0) {
+            return "경상북도"
+        } else if (latitude in 34.0..38.0 && longitude in 128.5 .. 131.0) {
+            return "경상남도"
+        } else if (latitude in 37.0..38.5 && longitude in 125.0 .. 127.5) {
+            return "강원도"
+        } else if (latitude in 36.0..37.5 && longitude in 126.0 .. 127.5) {
+            return "충청북도"
+        } else if (latitude in 35.5..36.5 && longitude in 126.0 .. 127.5) {
+            return "충청남도"
+        } else if (latitude in 36.0..37.0 && longitude in 127.0 .. 128.5) {
+            return "전라북도"
+        } else if (latitude in 34.5..35.5 && longitude in 126.5 .. 128.0) {
+            return "전라남도"
+        } else if (latitude in 33.0..35.0 && longitude in 126.0 .. 127.5) {
+            return "경기도"
+        } else if (latitude in 37.0..38.0 && longitude in 126.5 .. 127.5) {
+            return "인천광역시"
+        } else if (latitude in 37.0..38.0 && longitude in 127.0 .. 128.0) {
+            return "서울특별시"
+        }
+        // 다른 지역들에 대한 조건을 추가로 작성합니다.
+        else {
+            return "알 수 없음"
+        }
     }
 }

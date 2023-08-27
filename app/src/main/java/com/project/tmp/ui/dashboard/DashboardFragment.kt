@@ -44,7 +44,6 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initSpinner()
     }
 
@@ -87,8 +86,8 @@ class DashboardFragment : Fragment() {
                         val gameType = snapshot.child("snapshot").getValue(String::class.java) ?: ""
                         val date = dateFormat.parse(dateFormatted)
                         val distance = calculateDistance( latitude.toDouble(), longitude.toDouble())
-
                         val resultDto = ResultDto(nickname, description, latitude, longitude, date, gameType, distance)
+
                         resultDtoList.add(resultDto)
                     }
 
